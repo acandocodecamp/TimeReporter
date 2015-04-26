@@ -1,0 +1,19 @@
+# OS
+[Tt]humbs.db
+
+# Visual Studio
+*.user
+*.suo
+[Bb]in
+[Oo]bj
+
+# NuGet
+packages/*
+!packages/repositories.config
+
+# Merge temp files
+*.orig
+
+# Resharper
+_ReSharper*/
+*.resharper
