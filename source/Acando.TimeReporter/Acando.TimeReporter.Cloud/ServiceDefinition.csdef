@@ -8,6 +8,7 @@
   <WorkerRole name="Acando.TimeReporter.MasterWorker" vmsize="Small">
     <ConfigurationSettings>
       <Setting name="MaconomyUrl" />
+      <Setting name="MasterCommanderQueueConnectionString" />
     </ConfigurationSettings>
   </WorkerRole>
 </ServiceDefinition>

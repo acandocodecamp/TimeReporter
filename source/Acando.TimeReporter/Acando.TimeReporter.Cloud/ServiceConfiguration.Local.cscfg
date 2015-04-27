@@ -4,6 +4,7 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="MaconomyUrl" value="https://tidrapport.acando.com" />
+      <Setting name="MasterCommanderQueueConnectionString" value="Endpoint=sb://losttime.servicebus.windows.net/;SharedAccessKeyName=LordVoldemort;SharedAccessKey=rQLxkGOuCV7yGOcVFrcVH+UO/aukTM+jRF4FXMysEAg=" />
     </ConfigurationSettings>
   </Role>
   <Role name="Acando.TimeReporter.ViewModelSyncWorker">
