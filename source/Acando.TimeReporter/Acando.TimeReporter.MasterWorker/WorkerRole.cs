@@ -1,10 +1,14 @@
 namespace Acando.TimeReporter.MasterWorker
 {
+    using System;
     using System.Diagnostics;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
 
+    using Microsoft.Azure;
+    using Microsoft.ServiceBus;
+    using Microsoft.ServiceBus.Messaging;
     using Microsoft.WindowsAzure.ServiceRuntime;
 
     public class WorkerRole : RoleEntryPoint
@@ -57,11 +61,46 @@ namespace Acando.TimeReporter.MasterWorker
         {
             return Task.Factory.StartNew(() =>
             {
-                // TODO: Replace the following with your own logic.
+                // Create the queue if it does not exist already
+                var connectionString = CloudConfigurationManager.GetSetting("MasterCommanderQueueConnectionStrin");
+                var namespaceManager = NamespaceManager.CreateFromConnectionString(connectionString);
+                if (!namespaceManager.QueueExists("mastercommander"))
+                {
+                    namespaceManager.CreateQueue("mastercommander");
+                }
+
+                var client = QueueClient.CreateFromConnectionString(connectionString, "mastercommander");
+                var options = new OnMessageOptions
+                {
+                    AutoComplete = false,
+                    AutoRenewTimeout = TimeSpan.FromMinutes(1)
+                };
+                client.OnMessage(message =>
+                {
+                    try
+                    {
+                        // Process message from queue
+                        Console.WriteLine("Body: " + message.GetBody<string>());
+                        Console.WriteLine("MessageID: " + message.MessageId);
+                        Console.WriteLine("Test Property: " +
+                                          message.Properties["TestProperty"]);
+
+                        // Remove message from queue
+                        message.Complete();
+                    }
+                    catch (Exception)
+                    {
+                        // Indicates a problem, unlock message in queue
+                        message.Abandon();
+                    }
+                });
+
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     Trace.TraceInformation("Working");
                     Thread.Sleep(1000);
+
+
                 }
             });
         }
