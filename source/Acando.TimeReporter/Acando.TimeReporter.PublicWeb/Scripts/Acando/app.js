@@ -16,16 +16,4 @@
           });
     }]);
 
-    app.controller('ReportTimeController', ['$scope', ReportTimeController]);
-
-    function ReportTimeController() {
-
-    }
-    
-    app.controller('MyReportsController', ['$scope', MyReportsController]);
-
-    function MyReportsController() {
-
-    }
-
 })(window.angular);

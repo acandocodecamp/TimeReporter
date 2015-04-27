@@ -1,4 +1,4 @@
-﻿namespace Acando.TimeReporter.PublicWeb.Models
+﻿namespace Acando.TimeReporter.Models
 {
     public sealed class HomeViewModel
     {
