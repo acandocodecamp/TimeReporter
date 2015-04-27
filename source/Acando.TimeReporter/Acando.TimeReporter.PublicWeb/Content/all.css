@@ -1,3 +1,6 @@
+.ng-cloak {
+  display: none;
+}
 .navbar-brand {
   font-weight: 500;
   color: #3e6097;
