@@ -19,7 +19,7 @@
             </div>
             <ul class="navbar-nav nav">
                 <li>
-                    <a href="/MyReports">My Reports</a>
+                    <a href="#/MyReports">My Reports</a>
                 </li>
             </ul>
         </div>
@@ -28,27 +28,8 @@
     <section class="container-fluid" class="ng-cloak">
         <div class="ng-view"></div>
     </section>
-    <script type="text/ng-template" id="ReportTime.html">
-        <form class="row">
-            <div class="col-md-8">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="maconomyUsername" />
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="maconomyPassword" />
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="number" name="year" value="@DateTime.UtcNow.Year" />
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="number" name="week" value="@DateTime.UtcNow.GetIso8601WeekOfYear()" />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-default" type="button">Get timereport</button>
-                </div>
-            </div>
-        </form>
-    </script>
+    @{ Html.RenderPartial("_MyReports");  }
+    @{ Html.RenderPartial("_ReportTime");  }
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/all.js"></script>
