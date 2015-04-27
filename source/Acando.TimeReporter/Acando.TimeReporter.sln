@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Acando.TimeReporter.Cloud", "Acando.TimeReporter.Cloud\Acando.TimeReporter.Cloud.ccproj", "{01F80A06-CE00-4365-A15C-033ED0966F63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acando.TimeReporter.MasterWorker", "Acando.TimeReporter.MasterWorker\Acando.TimeReporter.MasterWorker.csproj", "{B7518981-78A2-4F30-BE6B-DE91DEEB254D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01F80A06-CE00-4365-A15C-033ED0966F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F80A06-CE00-4365-A15C-033ED0966F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F80A06-CE00-4365-A15C-033ED0966F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F80A06-CE00-4365-A15C-033ED0966F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7518981-78A2-4F30-BE6B-DE91DEEB254D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7518981-78A2-4F30-BE6B-DE91DEEB254D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7518981-78A2-4F30-BE6B-DE91DEEB254D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7518981-78A2-4F30-BE6B-DE91DEEB254D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
