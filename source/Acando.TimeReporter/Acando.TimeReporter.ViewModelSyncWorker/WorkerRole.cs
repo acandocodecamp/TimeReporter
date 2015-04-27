@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Acando.TimeReporter.ViewModelSyncWorker.Contracts;
+using Acando.TimeReporter.ViewModelSyncWorker.Model;
+using Acando.TimeReporter.ViewModelSyncWorker.Repository;
+using Microsoft.ServiceBus.Messaging;
 using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.Storage;
 
 namespace Acando.TimeReporter.ViewModelSyncWorker
 {
@@ -20,14 +21,16 @@ namespace Acando.TimeReporter.ViewModelSyncWorker
         public override void Run()
         {
             Trace.TraceInformation("Acando.TimeReporter.ViewModelSyncWorker is running");
-
+        
             try
             {
-                this.RunAsync(this.cancellationTokenSource.Token).Wait();
+                var timer = new System.Timers.Timer(2000);
+                timer.Elapsed += (sender, arge) => ReaAndSavedMessageFromQueue();
+                // RunAsync(cancellationTokenSource.Token).Wait();
             }
             finally
             {
-                this.runCompleteEvent.Set();
+                runCompleteEvent.Set();
             }
         }
 
@@ -50,8 +53,8 @@ namespace Acando.TimeReporter.ViewModelSyncWorker
         {
             Trace.TraceInformation("Acando.TimeReporter.ViewModelSyncWorker is stopping");
 
-            this.cancellationTokenSource.Cancel();
-            this.runCompleteEvent.WaitOne();
+            cancellationTokenSource.Cancel();
+            runCompleteEvent.WaitOne();
 
             base.OnStop();
 
@@ -67,5 +70,50 @@ namespace Acando.TimeReporter.ViewModelSyncWorker
                 await Task.Delay(1000);
             }
         }
+
+        private void ReaAndSavedMessageFromQueue()
+        {
+            var connectionString = CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
+
+            var client = QueueClient.CreateFromConnectionString(connectionString, "TestQueue");
+
+            // Configure the callback options
+            var options = new OnMessageOptions();
+            options.AutoComplete = false;
+            options.AutoRenewTimeout = TimeSpan.FromMinutes(1);
+
+            // Callback to handle received messages
+            client.OnMessage(message =>
+            {
+                try
+                {
+
+                    // pase string
+
+                    var report = message.ToTimeReport();
+
+                    //save data model to  document db
+
+                    var repository = new TimeReportWorkerrepository();
+
+                     //
+
+                    // Process message from queue
+                    Console.WriteLine("Body: " + message.GetBody<string>());
+                    Console.WriteLine("MessageID: " + message.MessageId);
+                    Console.WriteLine("Test Property: " +
+                                      message.Properties["TestProperty"]);
+
+                    // Remove message from queue
+                    message.Complete();
+                }
+                catch (Exception)
+                {
+                    // Indicates a problem, unlock message in queue
+                    message.Abandon();
+                }
+            });
+        }
+      
     }
 }

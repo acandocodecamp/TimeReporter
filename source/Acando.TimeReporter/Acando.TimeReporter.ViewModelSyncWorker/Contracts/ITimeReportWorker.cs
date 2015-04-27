@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Acando.TimeReporter.ViewModelSyncWorker.Contracts
 {
-    public  interface  ITimeReportWorker
+    public  interface  ITimeReportWorkerrepository
     {
         void UpdateTimeReport(ITimeReportViewModel model);
+
+        List<ITimeReportViewModel> GetReports(string useName);
 
     }
 }
