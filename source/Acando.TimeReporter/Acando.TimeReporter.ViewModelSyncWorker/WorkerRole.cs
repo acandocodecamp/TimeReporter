@@ -95,7 +95,7 @@ namespace Acando.TimeReporter.ViewModelSyncWorker
 
                     var repository = new TimeReportWorkerrepository();
 
-                     //
+                    //
 
                     // Process message from queue
                     Console.WriteLine("Body: " + message.GetBody<string>());

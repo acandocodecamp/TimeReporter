@@ -1,13 +1,14 @@
-﻿using Acando.TimeReport.Contracts;
+﻿using System.Collections.Generic;
+using Acando.TimeReport.Contracts;
 using Acando.TimeReport.Repository;
 
 namespace Acando.TimeReport.Service
 {
-    public class TimereportService
+    public class TimeReportService : ITimeReportService
     {
         private readonly ITimeReportWorkerrepository _repository;
 
-        public TimereportService()
+        public TimeReportService()
         {
            _repository= new TimeReportWorkerrepository();
         }
@@ -17,5 +18,9 @@ namespace Acando.TimeReport.Service
             _repository.UpdateTimeReport(model);
         }
 
+        public List<ITimeReportViewModel> GetReports(string useName)
+        {
+            return _repository.GetReports(useName);
+        }
     }
 }
