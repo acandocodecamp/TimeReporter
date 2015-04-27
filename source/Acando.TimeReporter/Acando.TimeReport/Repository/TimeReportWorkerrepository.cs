@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Acando.TimeReport.Contracts;
-
-namespace Acando.TimeReport.Repository
+﻿namespace Acando.TimeReport.Repository
 {
+    using System;
+    using System.Collections.Generic;
+    using Acando.TimeReport.Contracts;
+
     public class TimeReportWorkerrepository : ITimeReportWorkerrepository
     {
         public void UpdateTimeReport(ITimeReportViewModel model)

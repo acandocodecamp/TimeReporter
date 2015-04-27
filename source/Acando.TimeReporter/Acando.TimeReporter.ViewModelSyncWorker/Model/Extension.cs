@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Acando.TimeReport.Contracts;
-using Microsoft.ServiceBus.Messaging;
-
-namespace Acando.TimeReporter.ViewModelSyncWorker.Model
+﻿namespace Acando.TimeReporter.ViewModelSyncWorker.Model
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Acando.TimeReport.Contracts;
+
+    using Microsoft.ServiceBus.Messaging;
+
     public static class Extension
     {
 
