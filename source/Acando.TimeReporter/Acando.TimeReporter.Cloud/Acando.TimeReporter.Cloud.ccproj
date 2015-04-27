@@ -45,12 +45,22 @@
       <RoleName>Acando.TimeReporter.MasterWorker</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
+    <ProjectReference Include="..\Acando.TimeReporter.ViewModelSyncWorker\Acando.TimeReporter.ViewModelSyncWorker.csproj">
+      <Name>Acando.TimeReporter.ViewModelSyncWorker</Name>
+      <Project>{8a2e6816-d700-40da-aa8b-cfe16255d097}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>Acando.TimeReporter.ViewModelSyncWorker</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Acando.TimeReporter.MasterWorkerContent\" />
+    <Folder Include="Acando.TimeReporter.ViewModelSyncWorkerContent\" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="Acando.TimeReporter.MasterWorkerContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="Acando.TimeReporter.ViewModelSyncWorkerContent\diagnostics.wadcfgx" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

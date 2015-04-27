@@ -8,7 +8,7 @@ namespace Acando.TimeReporter.ViewModelSyncWorker.Contracts
 {
     public  interface  ITimeReportWorker
     {
-        UpdateTimeReport(ITimeReportViewModel model);
+        void UpdateTimeReport(ITimeReportViewModel model);
 
     }
 }
