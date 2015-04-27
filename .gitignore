@@ -18,3 +18,4 @@ packages/*
 _ReSharper*/
 *.resharper
 source/Acando.TimeReporter/packages/
+source/Acando.TimeReporter/Acando.TimeReporter.Cloud/csx/
