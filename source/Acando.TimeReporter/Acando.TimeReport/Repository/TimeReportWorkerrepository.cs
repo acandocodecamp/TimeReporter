@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Acando.TimeReporter.ViewModelSyncWorker.Contracts;
+using Acando.TimeReport.Contracts;
 
-namespace Acando.TimeReporter.ViewModelSyncWorker.Repository
+namespace Acando.TimeReport.Repository
 {
     public class TimeReportWorkerrepository : ITimeReportWorkerrepository
     {
