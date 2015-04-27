@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Diagnostics;
-using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.Storage;
-
 namespace Acando.TimeReporter.MasterWorker
 {
+    using System.Diagnostics;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using Microsoft.WindowsAzure.ServiceRuntime;
+
     public class WorkerRole : RoleEntryPoint
     {
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
+        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private readonly ManualResetEvent _runCompleteEvent = new ManualResetEvent(false);
 
         public override void Run()
         {
@@ -23,11 +18,11 @@ namespace Acando.TimeReporter.MasterWorker
 
             try
             {
-                this.RunAsync(this.cancellationTokenSource.Token).Wait();
+                RunAsync(_cancellationTokenSource.Token).Wait();
             }
             finally
             {
-                this.runCompleteEvent.Set();
+                _runCompleteEvent.Set();
             }
         }
 
@@ -39,7 +34,7 @@ namespace Acando.TimeReporter.MasterWorker
             // For information on handling configuration changes
             // see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
 
-            bool result = base.OnStart();
+            var result = base.OnStart();
 
             Trace.TraceInformation("Acando.TimeReporter.MasterWorker has been started");
 
@@ -50,8 +45,8 @@ namespace Acando.TimeReporter.MasterWorker
         {
             Trace.TraceInformation("Acando.TimeReporter.MasterWorker is stopping");
 
-            this.cancellationTokenSource.Cancel();
-            this.runCompleteEvent.WaitOne();
+            _cancellationTokenSource.Cancel();
+            _runCompleteEvent.WaitOne();
 
             base.OnStop();
 
