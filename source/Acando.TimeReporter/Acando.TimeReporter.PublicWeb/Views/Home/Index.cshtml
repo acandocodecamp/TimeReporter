@@ -1,21 +1,21 @@
-﻿@using Acando.TimeReport
-@model Acando.TimeReporter.PublicWeb.Models.HomeViewModel
-
+﻿@model Acando.TimeReporter.Models.HomeViewModel
 @{
-    ViewBag.Title = "title";
+    Bundles.Reference("Content/Acando");
+    Bundles.Reference("Scripts/Acando");
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Time Reporter</title>
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
+    @Bundles.RenderStylesheets("Content/Acando")
 </head>
 <body ng-app="app">
     <header class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Time reporter</a>
+                <a class="navbar-brand" href="#/">Time reporter</a>
             </div>
             <ul class="navbar-nav nav">
                 <li>
@@ -25,13 +25,13 @@
         </div>
     </header>
 
-    <section class="container-fluid" class="ng-cloak">
+    <section class="container" class="ng-cloak">
         <div class="ng-view"></div>
     </section>
     @{ Html.RenderPartial("_MyReports");  }
     @{ Html.RenderPartial("_ReportTime");  }
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
-    <script src="~/Scripts/all.js"></script>
+    @Bundles.RenderScripts()
 </body>
 </html>
