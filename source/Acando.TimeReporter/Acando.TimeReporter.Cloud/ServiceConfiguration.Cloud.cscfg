@@ -2,6 +2,8 @@
 <ServiceConfiguration serviceName="Acando.TimeReporter.Cloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="2" osVersion="*" schemaVersion="2014-06.2.4">
   <Role name="Acando.TimeReporter.MasterWorker">
     <Instances count="1" />
-    <ConfigurationSettings />
+    <ConfigurationSettings>
+      <Setting name="MaconomyUrl" value="https://tidrapport.acando.com" />
+    </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
