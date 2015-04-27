@@ -8,6 +8,8 @@
   </Role>
   <Role name="Acando.TimeReporter.ViewModelSyncWorker">
     <Instances count="1" />
-    <ConfigurationSettings />
+    <ConfigurationSettings>
+      <Setting name="Setting1" value="" />
+    </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
